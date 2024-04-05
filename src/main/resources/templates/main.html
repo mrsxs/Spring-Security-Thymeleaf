@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <meta charset="UTF-8">
+    <title>主页面</title>
+</head>
+<body>
+<!--登录成功 tym-->
+登录成功 <span th:text="${username}"></span>
+<a href="/logout">退出</a>
+<h3>身份:<span sec:authentication="principal"></span></h3>
+<h3>凭证:<span sec:authentication="credentials"></span></h3>
+<h3>权限列表:<span sec:authentication="authorities"></span></h3>
+<h3>名字:<span sec:authentication="name"></span></h3>
+<h3>明细:<span sec:authentication="details"></span></h3>
+
+<a href="/user/add" sec:authorize="hasAuthority('user:add')">添加用户</a>
+<a href="/user/list" sec:authorize="hasAuthority('user:list')">查询用户</a>
+<a href="/user/modify" sec:authorize="hasAuthority('user:modify')">修改用户</a>
+<a href="/toRegister" sec:authorize="hasAuthority('toRegister')">注册</a>
+<h3 sec:authorize-url="/test">添加用户</h3>
+</body>
+</html>
